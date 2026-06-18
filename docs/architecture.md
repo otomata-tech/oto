@@ -65,7 +65,7 @@ Trois chemins d'accès aux mêmes connecteurs :
 2. **REST** (`mcp.oto.ninja/api/*`) — consommé par la SPA `account/` (gestion du compte : credentials, presets, admin), l'extension Chrome (push cookie LinkedIn, pairing WhatsApp), et la CLI pour les features serveur-side (datastore, secrets per-user `oto ninja`, stock SIRENE). Auth = JWT Logto **ou** API token long-lived `oto_…`.
 3. **CLI locale** (`oto <cmd>`) — exécution directe sur la machine de l'utilisateur, secrets résolus localement (env → SOPS). Pas de serveur dans la boucle, sauf pour les commandes qui sont des clients HTTP de l'API REST (datastore, stock SIRENE — cf. ADR 0001).
 
-**Identité** : Logto self-hosted (`auth.oto.zone`), un seul compte par utilisateur pour tout l'univers (fusion oto-app `docs/PLAN.md`). Signature **ES384** (gotcha : default RS256 des verifiers), **pas de DCR** (tout client OAuth pré-créé via Management API). La table `oto_mcp.users` (clé = `sub` Logto) est la clé d'agrégation des comptes.
+**Identité** : Logto self-hosted (`auth.oto.zone`), un seul compte par utilisateur pour tout l'univers (fusion oto-app `oto-app/docs/PLAN.md`). Signature **ES384** (gotcha : default RS256 des verifiers), **pas de DCR** (tout client OAuth pré-créé via Management API). La table `oto_mcp.users` (clé = `sub` Logto) est la clé d'agrégation des comptes.
 
 ## Connecteurs — taxonomie et modèle de secrets
 
