@@ -35,23 +35,22 @@ on its own:
 | [france-opendata](https://github.com/otomata-tech/france-opendata) | French public-data clients (Recherche Entreprises, SIRENE, INPI, BODACC, DVF) + SIRENE stock over DuckDB/parquet. |
 | [otomata-calllog](https://github.com/otomata-tech/otomata-calllog) | Normalized MCP tool-call journal — FastMCP middleware + pluggable sinks, canonical `tool_calls` schema shared across every Otomata MCP server. |
 | [o-browser](https://github.com/otomata-tech/o-browser) | Browser-automation client (Patchright + remote CDP sessions). |
-| [otomata-editable](https://github.com/otomata-tech/otomata-editable) | In-place editable front pages — TS defaults in code, JSON overrides in DB (core + Fastify plugin + Vue components). |
 | [scout](https://github.com/otomata-tech/scout) | White-label Vue 3 + Fastify shell for lead-enrichment platforms (mission-driven theming, generic OAuth/cache/Logto helpers). |
 | [memento](https://github.com/otomata-tech/memento) | Structured, sourced, living knowledge substrate for AI agents over MCP (Apache-2.0, hosted at mento.cc). |
 
 ### Product repositories
 
-The platform itself. These are private; listed here so the architecture maps onto
-real repos.
+The platform itself. The **core product — backend and dashboard — is open source**;
+the rest stays private. Listed here so the architecture maps onto real repos.
 
-| Repo | Role |
-|---|---|
-| `oto-backend` | **The backend** — encrypted credential vault, orgs, doctrine, monitoring. Two faces: MCP (`mcp.oto.ninja/mcp`) + REST (`/api/*`). Imports `oto.tools` from oto-core. The center of the architecture. |
-| `oto-dashboard` | Product dashboard for the backend (Vue 3 + shadcn-vue + Tailwind, Logto PKCE). Has no server of its own — the backend is oto-backend. |
-| `oto-websites` | Sites monorepo: marketing (oto.ninja), scout vitrine, otomata.tech / oto.zone / mento.cc, the Oto Companion extension, and the `@otomata/ui` design system. |
-| `team-viewer` | Academy product — ADKAR/Prosci change-management heatmap viewer; first full implementation of the canonical design system. |
-| `client-backoffice-bridge` | Reference **remote connector** (bridge, ADR [0003](docs/adr/0003-remote-connector-bridge.md)): the client credential lives outside the platform. |
-| `otomata` | Private working meta-repo — cross-project index, issue tracker, and the ADR drafting copy that is mirrored into this public repo. |
+| Repo | Visibility | Role |
+|---|---|---|
+| [oto-backend](https://github.com/otomata-tech/oto-backend) | public | **The backend** — encrypted credential vault, orgs, doctrine, monitoring. Two faces: MCP (`mcp.oto.ninja/mcp`) + REST (`/api/*`). Imports `oto.tools` from oto-core. The center of the architecture. |
+| [oto-dashboard](https://github.com/otomata-tech/oto-dashboard) | public | Product dashboard for the backend (Vue 3 + shadcn-vue + Tailwind, Logto PKCE). Has no server of its own — the backend is oto-backend. |
+| `oto-websites` | private | Sites monorepo: marketing (oto.ninja), scout vitrine, otomata.tech / oto.zone / mento.cc, the Oto Companion extension, and the `@otomata/ui` design system. |
+| `academy` | private | Academy product (change-management / AI adoption) — public best-practices knowledge base + gated accompaniment. Live at academy.otomata.tech. |
+| `client-backoffice-bridge` | private | Reference **remote connector** (bridge, ADR [0003](docs/adr/0003-remote-connector-bridge.md)): the client credential lives outside the platform. |
+| `otomata-private` | private | Working meta-repo — cross-project index, issue tracker, and the ADR drafting copy mirrored into this public repo. |
 
 ## Architecture Decision Records (ADRs)
 
@@ -79,6 +78,9 @@ decision, and consequences. The authoritative status of each record is the
 | [0016](docs/adr/0016-datastore-spine-natif-pg.md) | Datastore = native PostgreSQL spine |
 | [0017](docs/adr/0017-boucle-usage-flux-evenements-session.md) | Usage loop: a stream of session events |
 | [0018](docs/adr/0018-extraction-scout-repo-dedie.md) | Extraction of scout into a dedicated repo |
+| [0019](docs/adr/0019-marketplace-connecteurs-selection.md) | Connector marketplace: "org proposes / member selects" |
+| [0020](docs/adr/0020-strategie-release-canari-cohorte.md) | Release strategy: pinned versions, test gate, cohort canary (blue/green) |
+| [0021](docs/adr/0021-procedures-et-executions.md) | Procedures (reusable) vs executions (instances) |
 
 ## Learn more
 
