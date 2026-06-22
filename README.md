@@ -49,7 +49,7 @@ the rest stays private. Listed here so the architecture maps onto real repos.
 | [oto-dashboard](https://github.com/otomata-tech/oto-dashboard) | public | Product dashboard for the backend (Vue 3 + shadcn-vue + Tailwind, Logto PKCE). Has no server of its own — the backend is oto-backend. |
 | `oto-websites` | private | Sites monorepo: marketing (oto.ninja), scout vitrine, otomata.tech / oto.zone / mento.cc, the Oto Companion extension, and the `@otomata/ui` design system. |
 | `academy` | private | Academy product (change-management / AI adoption) — public best-practices knowledge base + gated accompaniment. Live at academy.otomata.tech. |
-| `client-backoffice-bridge` | private | Reference **remote connector** (bridge, ADR [0003](docs/adr/0003-remote-connector-bridge.md)): the client credential lives outside the platform. |
+| *client bridges* | private | Reference **remote connectors** (bridge pattern, ADR [0003](docs/adr/0003-remote-connector-bridge.md)): per-client back-office services that hold the client credential off-platform. |
 | `otomata-private` | private | Working meta-repo — cross-project index, issue tracker, and the ADR drafting copy mirrored into this public repo. |
 
 ## Architecture Decision Records (ADRs)
