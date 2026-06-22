@@ -18,9 +18,8 @@ declaration onto both surfaces. The backend is the center; no façade holds a se
 
 ## Repositories
 
-Oto is **not a monorepo** — it is a constellation of independently versioned repos
-(see ADR [0005](docs/adr/0005-platform-composition.md)). The reusable substrate is
-open source; the product repositories are private.
+Oto is **not a monorepo** — it is a constellation of independently versioned repos.
+The reusable substrate and the product core are open source; some repos stay private.
 
 ### Open-source building blocks
 
@@ -49,38 +48,14 @@ the rest stays private. Listed here so the architecture maps onto real repos.
 | [oto-dashboard](https://github.com/otomata-tech/oto-dashboard) | public | Product dashboard for the backend (Vue 3 + shadcn-vue + Tailwind, Logto PKCE). Has no server of its own — the backend is oto-backend. |
 | `oto-websites` | private | Sites monorepo: marketing (oto.ninja), scout vitrine, otomata.tech / oto.zone / mento.cc, the Oto Companion extension, and the `@otomata/ui` design system. |
 | `academy` | private | Academy product (change-management / AI adoption) — public best-practices knowledge base + gated accompaniment. Live at academy.otomata.tech. |
-| *client bridges* | private | Reference **remote connectors** (bridge pattern, ADR [0003](docs/adr/0003-remote-connector-bridge.md)): per-client back-office services that hold the client credential off-platform. |
+| *client bridges* | private | Reference **remote connectors** (bridge pattern): per-client back-office services that hold the client credential off-platform — see [`architecture.md`](docs/architecture.md). |
 | `otomata-private` | private | Working meta-repo — cross-project index, issue tracker, and the ADR drafting copy mirrored into this public repo. |
 
-## Architecture Decision Records (ADRs)
+## Architecture decisions
 
-One decision per file in [`docs/adr/`](docs/adr/). Each ADR carries its context,
-decision, and consequences. The authoritative status of each record is the
-`Status:` field inside the ADR, not this index.
-
-| # | Decision |
-|---|---|
-| [0001](docs/adr/0001-sirene-stock-served-via-mcp.md) | SIRENE stock served via DuckDB over parquet |
-| [0002](docs/adr/0002-platform-dedicated-scaleway-box.md) | Dedicated platform server + vault encryption |
-| [0003](docs/adr/0003-remote-connector-bridge.md) | Remote connector (bridge): client code and credential kept off-platform |
-| [0004](docs/adr/0004-layered-reversible-topology.md) | Layered architecture with reversible topology |
-| [0005](docs/adr/0005-platform-composition.md) | Platform composition: composable packages, not a monorepo |
-| [0006](docs/adr/0006-harnais-vs-substrat.md) | Harness vs substrate: a harness consumes the platform by contract |
-| [0007](docs/adr/0007-dashboard-repo-separe.md) | Dashboard = separate product repo |
-| [0008](docs/adr/0008-scout-dans-oto-substrat-factgraph.md) | Generic "structured fact graph" substrate |
-| [0009](docs/adr/0009-couche-capacite.md) | Capability layer: authz, schema, and surfaces declared once |
-| [0010](docs/adr/0010-providers-vs-capabilities-factory-connecteurs.md) | Providers vs capabilities: the connector factory |
-| [0011](docs/adr/0011-organisation-connecteurs-outils-projections.md) | Connectors & tools layout: spine vs connectors, activation = visibility |
-| [0012](docs/adr/0012-groupes-hierarchie-droits.md) | Groups (departments) & unified rights hierarchy |
-| [0013](docs/adr/0013-acces-plateforme-invitation-virale.md) | Platform access & viral invitation: soft gate + quota referral |
-| [0014](docs/adr/0014-doctrine-objet-structure-refs-outils.md) | Doctrine = structured object with resolved tool references |
-| [0015](docs/adr/0015-identite-par-org.md) | Per-org identity: tool visibility scoped by (user, org) |
-| [0016](docs/adr/0016-datastore-spine-natif-pg.md) | Datastore = native PostgreSQL spine |
-| [0017](docs/adr/0017-boucle-usage-flux-evenements-session.md) | Usage loop: a stream of session events |
-| [0018](docs/adr/0018-extraction-scout-repo-dedie.md) | Extraction of scout into a dedicated repo |
-| [0019](docs/adr/0019-marketplace-connecteurs-selection.md) | Connector marketplace: "org proposes / member selects" |
-| [0020](docs/adr/0020-strategie-release-canari-cohorte.md) | Release strategy: pinned versions, test gate, cohort canary (blue/green) |
-| [0021](docs/adr/0021-procedures-et-executions.md) | Procedures (reusable) vs executions (instances) |
+The platform is shaped by a series of architecture decisions (ADRs). The enduring
+ones are summarized in [`docs/architecture.md`](docs/architecture.md); the full
+decision records are kept internally.
 
 ## Learn more
 
