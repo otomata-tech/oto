@@ -92,6 +92,45 @@ Deux mondes de secrets, étanches :
 
 Le modèle bridge a un **pilote** en production (un back-office client, namespace grant-only, bridge hébergeable côté Otomata puis côté client pour une custody complète).
 
+## Objets, visibilité & partage — le modèle unifié
+
+Tout objet de la plateforme suit quatre règles (la primitive `ownership`, seam unique
+`oto_mcp/ownership.py`) :
+
+1. **Un objet est possédé par UN scope** — colonnes `owner_type/owner_id` sur l'objet,
+   sur l'échelle `platform ⊇ org ⊇ team ⊇ user`. Pas de multi-owner : la multiplicité
+   passe par le partage.
+2. **La visibilité découle de l'ownership** — membre du scope ⟹ accès au contenu.
+   *Restreindre = poser l'objet au bon scope* ; jamais d'allowlist de restriction
+   par-dessus l'ownership.
+3. **Le partage est additif : audience × rôle** — un grant (`resource_grants`, table
+   unique tous types) étend l'accès à une personne / équipe / org avec un rôle
+   *lecteur · éditeur · gérant*. Il ne restreint jamais rien.
+4. **L'escalade d'admin est inaliénable** — `platform_admin ⊇ org_admin ⊇ group_admin
+   ⊇ member` (`roles.py`) : un admin gouverne les objets de son scope, mais ne *lit*
+   jamais le contenu perso d'un tiers (privacy by default ; l'exception = view-as
+   audité).
+
+S'y conforment : **projets** (4 crans, dont le cran platform = la bibliothèque de
+modèles), **tableaux** (datastore ; org/team/user), **procédures** (org/team, table
+unique `org_instructions` owner-scopée), **documents & fichiers** (héritent du projet
+parent), **guides/readmes** (4 crans), **instances de connecteur** (4 crans).
+
+**L'exception voulue : le connecteur.** Ce n'est pas un contenu qu'on lit mais un
+*droit d'usage* d'une capacité + une clé. Son régime propre : disponibilité par scope
+(`connector_availability` — master platform, override org, coupure d'équipe
+restrict-only), ACL deny-by-default (`connector_acl` : ≥1 ligne ⟹ restreint), et des
+instances possédées par scope avec prêt nominatif. Seule la *philosophie* est commune
+(restreindre = poser au bon scope).
+
+**Règles de construction** (tout nouvel objet) : il naît sur la primitive `ownership`,
+à l'échelle des 4 crans ou un sous-ensemble motivé — jamais une table d'ACL dédiée.
+Côté schéma : **un concept = une table, le grain (scope) = des colonnes** — jamais une
+table jumelle par grain, jamais une table dédiée pour « publié » (un flag + un owner
+platform suffisent). Côté vocabulaire : le produit (UI, copy) parle canonique
+(*tableau*, *procédure*, *équipe*) ; un identifiant de code peut garder son nom
+historique (`namespace`, `doctrine`, `group`), mais il ne remonte jamais dans l'UI.
+
 ## Données entreprise France (`fr_*`)
 
 Namespace unifié `fr_` (CLI `oto fr`, tools MCP `fr_*`) sur plusieurs sources (Recherche Entreprises, INSEE SIRENE, INPI, BODACC, BOAMP). Toute la logique vit dans **france-opendata** (lib partagée) ; oto-cli et oto-backend ne font que l'exposer.
