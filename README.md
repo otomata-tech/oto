@@ -50,6 +50,10 @@ the rest stays private. Listed here so the architecture maps onto real repos.
 | *client bridges* | private | Reference **remote connectors** (bridge pattern): per-client back-office services that hold the client credential off-platform — see [`architecture.md`](docs/architecture.md). |
 | `oto-private` | private | Working meta-repo — cross-project index, issue tracker, ADRs. |
 
+## Release log
+
+[`RELEASES.md`](RELEASES.md) — hand-written, dated release notes, product-level.
+
 ## Architecture decisions
 
 The platform is shaped by a series of architecture decisions (ADRs). The enduring
