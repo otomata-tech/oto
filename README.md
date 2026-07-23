@@ -31,11 +31,10 @@ on its own:
 | [oto-core](https://github.com/otomata-tech/oto-core) | Connector library (`oto.tools` namespace + config/secrets). Single source of the connector clients, consumed by both the CLI and the backend. |
 | [oto-cli](https://github.com/otomata-tech/oto-cli) | `oto` — Typer CLI façade over oto-core (humans and local agents). |
 | [oto-plugin](https://github.com/otomata-tech/oto-plugin) | Claude Code plugin: auto-configured MCP connector + a universal skill. Third-party onboarding entry point. |
+| [otomata-mcp](https://github.com/otomata-tech/otomata-mcp) | Common base for Otomata MCP servers — doctrines served as tools, runs, scoped RBAC, canonical tool-call logging. |
 | [france-opendata](https://github.com/otomata-tech/france-opendata) | French public-data clients (Recherche Entreprises, SIRENE, INPI, BODACC, DVF) + SIRENE stock over DuckDB/parquet. |
-| [otomata-calllog](https://github.com/otomata-tech/otomata-calllog) | Normalized MCP tool-call journal — FastMCP middleware + pluggable sinks, canonical `tool_calls` schema shared across every Otomata MCP server. |
 | [o-browser](https://github.com/otomata-tech/o-browser) | Browser-automation client (Patchright + remote CDP sessions). |
-| [scout](https://github.com/otomata-tech/scout) | White-label Vue 3 + Fastify shell for lead-enrichment platforms (mission-driven theming, generic OAuth/cache/Logto helpers). |
-| [memento](https://github.com/otomata-tech/memento) | Structured, sourced, living knowledge substrate for AI agents over MCP (Apache-2.0, hosted at mento.cc). |
+| [oto-memento](https://github.com/otomata-tech/oto-memento) | Structured, sourced, living knowledge substrate for AI agents over MCP (Apache-2.0, hosted at mento.cc). |
 
 ### Product repositories
 
@@ -44,12 +43,12 @@ the rest stays private. Listed here so the architecture maps onto real repos.
 
 | Repo | Visibility | Role |
 |---|---|---|
-| [oto-backend](https://github.com/otomata-tech/oto-backend) | public | **The backend** — encrypted credential vault, orgs, doctrine, monitoring. Two faces: MCP (`mcp.oto.ninja/mcp`) + REST (`/api/*`). Imports `oto.tools` from oto-core. The center of the architecture. |
+| [oto-backend](https://github.com/otomata-tech/oto-backend) | public | **The backend** — encrypted credential vault, orgs, doctrine, monitoring. Two faces: MCP (`mcp.oto.cx/mcp`) + REST (`/api/*`). Imports `oto.tools` from oto-core. The center of the architecture. |
 | [oto-dashboard](https://github.com/otomata-tech/oto-dashboard) | public | Product dashboard for the backend (Vue 3 + shadcn-vue + Tailwind, Logto PKCE). Has no server of its own — the backend is oto-backend. |
-| `oto-websites` | private | Sites monorepo: marketing (oto.ninja), scout vitrine, otomata.tech / oto.zone / mento.cc, the Oto Companion extension, and the `@otomata/ui` design system. |
+| `oto-websites` | private | Sites monorepo: marketing (oto.cx), otomata.tech / oto.zone / mento.cc, the Oto Companion extension, and the `@otomata/ui` design system. |
 | `academy` | private | Academy product (change-management / AI adoption) — public best-practices knowledge base + gated accompaniment. Live at academy.otomata.tech. |
 | *client bridges* | private | Reference **remote connectors** (bridge pattern): per-client back-office services that hold the client credential off-platform — see [`architecture.md`](docs/architecture.md). |
-| `otomata-private` | private | Working meta-repo — cross-project index, issue tracker, and the ADR drafting copy mirrored into this public repo. |
+| `oto-private` | private | Working meta-repo — cross-project index, issue tracker, ADRs. |
 
 ## Architecture decisions
 
@@ -59,5 +58,5 @@ decision records are kept internally.
 
 ## Learn more
 
-- Platform: **oto.ninja**
-- Open-source building blocks: **oto.ninja/oss**
+- Platform: **[oto.cx](https://oto.cx)**
+- Open-source building blocks: **[oto.cx/oss](https://oto.cx/oss)**
