@@ -34,7 +34,6 @@ on its own:
 | [otomata-mcp](https://github.com/otomata-tech/otomata-mcp) | Common base for Otomata MCP servers — doctrines served as tools, runs, scoped RBAC, canonical tool-call logging. |
 | [france-opendata](https://github.com/otomata-tech/france-opendata) | French public-data clients (Recherche Entreprises, SIRENE, INPI, BODACC, DVF) + SIRENE stock over DuckDB/parquet. |
 | [o-browser](https://github.com/otomata-tech/o-browser) | Browser-automation client (Patchright + remote CDP sessions). |
-| [oto-memento](https://github.com/otomata-tech/oto-memento) | Memento — the platform's knowledge substrate (org knowledge base). Extraction from oto-backend into its own brick, in progress. |
 
 ### Product repositories
 
