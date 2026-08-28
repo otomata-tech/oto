@@ -11,7 +11,7 @@ Dated entries, free form. (Deployed versions are the `v*` tags on
 What shipped, in product terms. Versions if relevant (backend vX.Y.Z / dashboard vX.Y.Z).
 -->
 
-## 2026-08-28 — Modifier un identifiant sans en connaître le secret (backend v1.152.0 / dashboard v1.49.0)
+## 2026-08-28 — Modifier un identifiant sans en connaître le secret (backend v1.153.0 / dashboard v1.49.2)
 
 **Changer une valeur d'un identifiant partagé n'oblige plus à tout resaisir.** Un
 connecteur configuré pour une équipe ou une organisation ne pouvait pas être
@@ -25,6 +25,22 @@ Désormais les valeurs non secrètes se relisent — à son niveau, et seulement
 qui administre ce niveau —, et l'enregistrement complète ce qu'on ne renvoie pas.
 Un champ laissé vide conserve ce qui est en place ; le vider explicitement
 l'efface. Les secrets, eux, ne se relisent toujours pas, à aucun niveau.
+
+**Un écran cesse de dire « demande à un admin » à l'administrateur.** Quand aucune
+clé n'était encore posée, la fiche d'un connecteur affichait « Réservé à
+certaines équipes — demande à un admin ». Or « aucune clé ne résout » n'est pas
+« l'accès t'est refusé » : c'est l'état par défaut de tout connecteur pas encore
+connecté. Le mur s'affichait donc à des gens que rien ne bloquait, jusqu'à un
+responsable devant le connecteur de sa propre organisation — le bouton pour poser
+sa clé était là, sous la phrase, et plus personne ne le lisait. La restriction
+réelle est désormais servie séparément, et le mot « Réservé » ne sort que si
+c'en est un.
+
+Dans la foulée : quand une clé existe dans une équipe, l'écran ne se contente
+plus de dire « active cette équipe » — il rappelle qu'on peut poser la sienne, qui
+passe avant. Cette phrase, écrite deux fois dans le même bloc, ne l'est plus
+qu'une. Et le bouton s'appelle « Poser ma clé » quand une clé existe déjà
+ailleurs, au lieu de porter le nom du connecteur.
 
 **Un formulaire ne montre plus que les champs qui servent.** Un connecteur peut
 déclarer que l'un de ses champs décide des autres : le connecteur HTTP générique
