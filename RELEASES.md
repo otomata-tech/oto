@@ -11,6 +11,37 @@ Dated entries, free form. (Deployed versions are the `v*` tags on
 What shipped, in product terms. Versions if relevant (backend vX.Y.Z / dashboard vX.Y.Z).
 -->
 
+## 2026-08-28 — Modifier un identifiant sans en connaître le secret (backend v1.152.0 / dashboard v1.49.0)
+
+**Changer une valeur d'un identifiant partagé n'oblige plus à tout resaisir.** Un
+connecteur configuré pour une équipe ou une organisation ne pouvait pas être
+relu : l'écran de modification s'ouvrait entièrement vide, y compris sur les
+valeurs qui n'ont rien de secret — une adresse de service, un mode
+d'authentification, un nom d'en-tête. Et l'enregistrement remplaçait tout. Corriger
+une adresse revenait donc à retrouver ailleurs une clé qu'aucune surface ne
+restitue, sous peine de l'écraser par du vide.
+
+Désormais les valeurs non secrètes se relisent — à son niveau, et seulement pour
+qui administre ce niveau —, et l'enregistrement complète ce qu'on ne renvoie pas.
+Un champ laissé vide conserve ce qui est en place ; le vider explicitement
+l'efface. Les secrets, eux, ne se relisent toujours pas, à aucun niveau.
+
+**Un formulaire ne montre plus que les champs qui servent.** Un connecteur peut
+déclarer que l'un de ses champs décide des autres : le connecteur HTTP générique
+en affichait douze quel que soit le mode d'authentification choisi, là où trois
+suffisent. Les valeurs à choix fermé se choisissent dans une liste au lieu de se
+taper — une faute de frappe était acceptée à l'enregistrement puis refusée au
+premier appel réel. La cohérence est vérifiée à l'écriture, et le refus nomme le
+champ en cause.
+
+**Une erreur d'API distante remonte enfin son motif.** Un appel sortant en échec
+ne rendait que son code — « HTTP 502 » — sans un mot de ce que le service répondait.
+Un service resté indisponible plusieurs semaines n'a jamais pu être diagnostiqué
+autrement qu'en lisant les journaux du serveur, hors de portée d'un agent. Le
+message du service accompagne maintenant le code, borné et étiqueté comme une
+donnée à ne pas prendre pour une instruction, avec une indication explicite de ce
+qui vaut la peine d'être retenté.
+
 ## 2026-08-19 — Prospection sortante, groupes Folk, suivi des tenants (backend v1.130.0 / dashboard v1.40.0)
 
 **Une « Base de connaissance » n'apparaît plus toute seule.** Lire la base d'une
