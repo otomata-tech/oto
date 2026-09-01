@@ -11,6 +11,33 @@ Dated entries, free form. (Deployed versions are the `v*` tags on
 What shipped, in product terms. Versions if relevant (backend vX.Y.Z / dashboard vX.Y.Z).
 -->
 
+## 2026-09-01 — Le mode d'emploi parvient enfin à l'agent (backend v1.172.0)
+
+**Ce que l'agent doit savoir lui arrive désormais, quel que soit son client.** Trois
+pertes distinctes, mesurées le même jour, privaient les agents de texte écrit pour eux :
+
+- Les instructions injectées à la connexion sont tronquées à ~2 000 caractères par
+  certains clients, et pas transmises du tout par d'autres. Le socle devient un résumé
+  qui tient entier sous cette coupe et prescrit la lecture de la **notice** — le mode
+  d'emploi complet, chargeable à la demande — puis du contexte de l'organisation
+  (`oto_context`). Un budget en CI empêche le socle de regrossir.
+- La prose des docstrings placée après le bloc des arguments était silencieusement
+  jetée au montage des outils : 78 outils amputés, dont le mode d'emploi des jetons de
+  contexte d'`oto_call`, jamais parvenu à personne. Restaurée (+19 000 caractères
+  servis), avec un garde-fou CI si le motif revient.
+- Les descriptions de paramètres déclarées sur les capacités n'atteignaient que la
+  face REST, jamais la face MCP. Servies des deux côtés désormais.
+
+**Les verbes du nouvel univers (nœuds) passent en bêta sur option** : exposés jusque-là
+à tous par erreur, ils ne sont visibles que des comptes choisis par un admin
+(fail-closed).
+
+Aussi : `fr_directors` rend un objet structuré au lieu d'une liste nue sur l'appel
+unitaire ; des crans de stricture opt-in sur le datastore (défauts inchangés) ; un
+contrôle anti-noms-clients en CI du dépôt. Une bascule de contrat sur la capacité
+`resources` a été retirée du train avant publication — elle reviendra derrière un flag
+bêta, l'ancienne surface restant inchangée par défaut.
+
 ## 2026-08-28 — Modifier un identifiant sans en connaître le secret (backend v1.153.0 / dashboard v1.49.2)
 
 **Changer une valeur d'un identifiant partagé n'oblige plus à tout resaisir.** Un
